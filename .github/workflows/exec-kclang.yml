@@ -1,0 +1,19 @@
+name: CD-KCLANG
+on:
+  push:
+    branches: [ master ]
+  schedule:
+    - cron: '0/5 * * * *'
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: builder prepare
+      run: .    ./kclang-create
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: builder build
+      run: source     ./kclang-create
